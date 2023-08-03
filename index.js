@@ -8,20 +8,20 @@ const cors = require("cors");
 
 app.use(express.json());
 app.use(cors());
-const Portifolio = require("./model/portfolio");
+const Pessoa = require("./model/pessoa");
 
 connetToDb();
 
 app.get("/", async (req, res) => {
-  const ports = await Portifolio.find();
-  res.json(ports);
+  const pessoas = await Pessoa.find();
+  res.json(pessoas);
 });
 
 app.post("/ins", async (req, res) => {
-  const newPort = req.body;
-  await Portifolio.create(newPort);
+  const newUser = req.body;
+  await Pessoa.create(newUser);
 
-  res.status(201).json(newPort);
+  res.status(201).json(newUser);
 });
 
 app.listen(port, () => console.log(`🚀 Meu site http://localhost:${port}`));

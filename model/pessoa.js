@@ -7,15 +7,7 @@ const pessoaSchema = new Schema({
     type: String,
     require: true,
   },
-  description: {
-    type: String,
-    require: true,
-  },
-  linkSite: {
-    type: String,
-    require: true,
-  },
-  imagePath: {
+  age: {
     type: String,
     require: true,
   },
