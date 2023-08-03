@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const productSchema = new Schema({
+const pessoaSchema = new Schema({
   name: {
     type: String,
     require: true,
   },
-  description: {
+  age: {
     type: String,
     require: true,
   },
@@ -15,14 +15,6 @@ const productSchema = new Schema({
     type: String,
     require: true,
   },
-  code: {
-    type: String,
-    require: true,
-  },
-  image: {
-    type: String,
-    require: true,
-  },
 });
 
-module.exports = mongoose.model("Product", productSchema);
+module.exports = mongoose.model("Pessoa", pessoaSchema);

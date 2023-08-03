@@ -3,7 +3,7 @@ mongoose.set("strictQuery", true);
 
 const connetToDb = () => {
   mongoose
-    .connect(process.env.PRODUCT_URI, {
+    .connect(process.env.FULL_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
