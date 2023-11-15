@@ -24,4 +24,23 @@ app.post("/ins", async (req, res) => {
   res.status(201).json(newPort);
 });
 
+app.put("/update/:id", async (req, res) => {
+  const {id} = req.params;
+  await Portifolio.findByIdAndUpdate(id, {
+    name,
+    description,
+    linkSite,
+    imagePath
+  });
+
+  res.sendStatus(204);
+});
+
+app.delete("/delete/:id", async (req, res) => {
+  const {id} = req.params;
+  await Portifolio.findByIdAndUpdate(id);
+
+  res.sendStatus(204);
+});
+
 app.listen(port, () => console.log(`🚀 Meu site http://localhost:${port}`));
