@@ -26,6 +26,8 @@ app.post("/ins", async (req, res) => {
 
 app.put("/update/:id", async (req, res) => {
   const {id} = req.params;
+
+  const {name, description, linkSite, imagePath} = req.body;
   await Portifolio.findByIdAndUpdate(id, {
     name,
     description,
