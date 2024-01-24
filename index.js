@@ -36,25 +36,26 @@ app.get("/", async (req, res) => {
 app.post("/ins", upload.single('image'), async (req, res) => {
   console.log("nada")
   
-    const {name, description, linkSite} = req.body;
+    const {name, description, linkSite, imagePath} = req.body;
     console.log(req.headers)
-    const imagePath = req.file?.filename;
+    // const imagePath = req.file?.filename;
     const port = await Portifolio.create({
       name,
       description,
       linkSite,
-      imagePath: `https://node-name.vercel.app/files/${imagePath}`
+      imagePath
+      // imagePath: `https://node-name.vercel.app/files/${imagePath}`
     });
   
     res.status(201).json(port);
 });
 
-app.put("/update/:id", upload.single('image') ,async (req, res) => {
+app.put("/update/:id", async (req, res) => {
   const {id} = req.params;
 
-  const {name, description, linkSite} = req.body;
+  const {name, description, linkSite, imagePath} = req.body;
 
-  const imagePath = req.file?.filename;
+  // const imagePath = req.file?.filename;
   await Portifolio.findByIdAndUpdate(id, {
     name,
     description,
