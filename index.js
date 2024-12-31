@@ -31,23 +31,21 @@ const upload = multer({
 
 app.get("/", async (req, res) => {
   const ports = await Portifolio.find();
-  res.json(ports);
+  return res.json(ports);
 });
 app.post("/ins", upload.single('image'), async (req, res) => {
-  console.log("nada")
+	const {name, description, linkSite, imagePath} = req.body;
+	console.log(req.headers)
+	// const imagePath = req.file?.filename;
+	const port = await Portifolio.create({
+	name,
+	description,
+	linkSite,
+	imagePath
+	// imagePath: `https://node-name.vercel.app/files/${imagePath}`
+	});
   
-    const {name, description, linkSite, imagePath} = req.body;
-    console.log(req.headers)
-    // const imagePath = req.file?.filename;
-    const port = await Portifolio.create({
-      name,
-      description,
-      linkSite,
-      imagePath
-      // imagePath: `https://node-name.vercel.app/files/${imagePath}`
-    });
-  
-    res.status(201).json(port);
+    return res.status(201).json(port);
 });
 
 app.put("/update/:id", async (req, res) => {
@@ -63,7 +61,7 @@ app.put("/update/:id", async (req, res) => {
     imagePath
   });
 
-  res.sendStatus(204);
+  return res.sendStatus(204);
 });
 
 app.delete("/delete/:id", async (req, res) => {
@@ -71,7 +69,7 @@ app.delete("/delete/:id", async (req, res) => {
   await Portifolio.findByIdAndDelete(id);
 
 
-  res.sendStatus(204);
+  return res.sendStatus(204);
 });
 
 app.listen(port, () => console.log(`🚀 Meu site http://localhost:${port}`));
