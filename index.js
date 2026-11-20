@@ -12,28 +12,12 @@ const Portifolio = require("./model/portifolio");
 app.use(cors());
 
 connetToDb();
-app.use(
-  '/files',
-  express.static(path.resolve(__dirname, '.', 'uploads')),
-  );
-  
-app.use(express.json());
-const upload = multer({
-  storage: multer.diskStorage({
-    destination(req, file, callback) {
-			callback(null, path.resolve(__dirname, '.', 'uploads'));
-		},
-		filename(req, file, callback) {
-			callback(null, `${Date.now()}-${file.originalname}`);
-		},
-	}),
-});
 
 app.get("/", async (req, res) => {
   const ports = await Portifolio.find();
   return res.json(ports);
 });
-app.post("/ins", upload.single('image'), async (req, res) => {
+app.post("/ins", async (req, res) => {
 	const {name, description, linkSite, imagePath} = req.body;
 	console.log(req.headers)
 	// const imagePath = req.file?.filename;
